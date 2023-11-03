@@ -3,10 +3,10 @@ const router = express.Router();
 const calzadosController = require('../controllers/calzados.controller');
 const authMiddleware = require('../middlewares/auth.middleware');
 
-router.get('/', calzadosController.index);
-router.post('/', calzadosController.create);
-router.delete('/:id', calzadosController.delete);
-router.patch('/:id', calzadosController.updateParcial);
+router.get('/',authMiddleware.verificarJWT, calzadosController.index);
+router.post('/', authMiddleware.verificarJWT,calzadosController.create);
+router.delete('/:id', authMiddleware.verificarJWT,calzadosController.delete);
+router.patch('/:id',authMiddleware.verificarJWT, calzadosController.updateParcial);
 
 
 
